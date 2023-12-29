@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <%-include('./partials/nav.ejs') %>
+    <h2>All articles</h2>
+    <% if (articles.length !=0){ articles.forEach(function(article) { %>
+        <div class="article">
+            <h3>
+                <%= article.title %>
+            </h3>
+            <p>
+                <%= article.snippet %>
+            </p>
+        </div>
+        <% }) %>
+            <% } else { %>
+                <p>No articles found</p>
+                <% } %>
+
+    <%-include('./partials/footer.ejs') %>
+
+</body>
+
+</html>
