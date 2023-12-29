@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog | <%= article.title %></title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <%-include('./partials/nav.ejs') %>
+    <h1><%= article.title %></h1>
+    <p><%= article.body %></p>
+    <button>Delete</button>
+
+
+    <%-include('./partials/footer.ejs') %>
+    <script>
+        let button = document.getElementsByTagName('button')[0]
+        button.addEventListener('click', ()=>{
+            fetch('/<%= article._id %>', {method: 'delete'})
+            .then(() => window.location.href = '/')
+            .catch(err => console.log(err))
+
+        }
+        )
+    </script>
+</body>
+</html>
