@@ -12,12 +12,11 @@ function login(req, res) {
     User.findOne({ email })
         .then((user) => {
             if (user) {
-                const salt = bcrypt.genSaltSync(10);
-                bcrypt.hash(password, salt)
+                bcrypt.compare(password, user.password)
                     .then((result) => {
                         console.log(result);    
                         console.log(user.password);
-                        if (user.password == result) {
+                        if (result) {
                             res.json({ message: 'login successful' })
                         }
                         else {
